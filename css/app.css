@@ -201,7 +201,7 @@ body {
 
 @media (max-width: 767px) {
     .weather-container>.temp {
-        left: -109px;
+        left: -100px;
     }
 }
 
@@ -302,7 +302,7 @@ body {
     gap: 15px;
     margin: 0 auto;
     position: relative;
-    top: 20px;
+    top: 17px;
     left: -10px;
 }
 
