@@ -1,0 +1,360 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(rgb(47, 128, 237), rgb(86, 204, 242));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+    background-color: #fff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    width: 390px;
+    border-radius: 7px;
+    margin: 0 10px;
+}
+
+.wrapper.active {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.wrapper header {
+    color: #8bd8f9;
+    padding: 18px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    letter-spacing: 2px;
+}
+
+.wrapper.active header {
+    background-color: #fff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 7px;
+}
+
+.wrapper header i {
+    font-size: 0px;
+    cursor: pointer;
+}
+
+/* when we add class active to wrapper the icon appears */
+.wrapper.active header i {
+    font-size: 20px;
+}
+
+.wrapper .input-content {
+    margin: 20px 25px 30px;
+}
+
+/* when we add class active to wrapper the input section disappears */
+.wrapper.active .input-content {
+    display: none;
+}
+
+.input-content .info-text {
+    display: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+    border-radius: 7px;
+}
+
+.input-content .info-text.error {
+    display: block;
+    color: #795548;
+    background-color: #f8d7da;
+}
+
+.input-content .info-text.pending {
+    display: block;
+    color: #0c5460;
+    background-color: #d1ecf1;
+}
+
+.input-content :where(input, button) {
+    width: 100%;
+    height: 55px;
+    outline: none;
+    border-radius: 7px;
+    letter-spacing: 1px;
+}
+
+.input-content input {
+    color: #4ab1ff;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* when the input is vaild and focused */
+.input-content input:is(:valid, :focus) {
+    border: 2px solid #4ab1ff;
+}
+
+.input-content input::placeholder {
+    color: #ccc;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.input-content .separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 25px 0;
+    position: relative;
+}
+
+.input-content .separator::after {
+    content: "Or";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 40px;
+    text-align: center;
+    color: #ccc;
+    font-size: 16px;
+}
+
+.input-content button {
+    cursor: pointer;
+    color: #4ab1ff;
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.5s;
+    border: 2px solid #4ab1ff;
+}
+
+.input-content button:hover {
+    color: white;
+    background-color: #4ab1ff;
+}
+
+/* weather content */
+.weather-container {
+    display: none;
+    grid-template-rows: 60px 270px 160px;
+}
+
+.wrapper.active .weather-container {
+    display: grid;
+    animation: show 0.6s linear alternate;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.weather-container img {
+    width: 200px;
+    margin: 0 auto;
+    background-color: #8bd8f9;
+    height: 130px;
+    padding: 8px 0;
+    border-radius: 20px;
+    box-shadow: 18px -13px 0px white;
+    transition: 0.6s;
+}
+
+.weather-container>.temp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotateX(345deg) rotateY(60deg);
+    position: relative;
+    top: 100px;
+    left: -135px;
+    height: fit-content;
+    gap: 25px;
+}
+
+@media (max-width: 767px) {
+    .weather-container>.temp {
+        left: -109px;
+    }
+}
+
+.weather-container>.temp .number {
+    font-size: 75px;
+    font-weight: 600;
+    color: #8bd8f9;
+    letter-spacing: 4px;
+    background-color: white;
+    padding: 0 45px;
+    border-radius: 5px;
+    box-shadow: -18px -9px 0px rgb(139 216 249);
+    transition: 0.6s;
+}
+
+.weather-container>.temp .date,
+.weather-container>.temp .time {
+    color: white;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: 500;
+    background-color: #8bd8f9;
+    padding: 0 18px;
+    border-radius: 5px;
+    box-shadow: -18px -9px 0px white;
+    transition: 0.6s;
+}
+
+.weather-container>.temp .date:hover,
+.weather-container>.temp .time:hover,
+.weather-container>.temp .number:hover,
+.weather-content .weather:hover,
+.weather-content .location:hover,
+.weather-container img:hover {
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.weather-container .weather-location {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.weather-content {
+    flex-direction: column;
+    display: flex;
+    position: relative;
+    right: -110px;
+    transform: rotateX(30deg) rotateY(51deg);
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .weather-content {
+        right: -85px;
+    }
+}
+
+.weather-content .weather {
+    font-size: 28px;
+    background-color: white;
+    padding: 10px 12px;
+    border-radius: 5px;
+    color: #8bd8f9;
+    font-weight: 500;
+    box-shadow: 18px -13px 0px rgb(139 216 249);
+    text-align: center;
+    transition: 0.6s;
+}
+
+.weather-content .location {
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: rgb(139, 216, 249);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 18px -13px 0px rgb(139 216 249);
+    transition: 0.6s;
+}
+
+.weather-content .location svg {
+    width: 18px;
+    height: 18px;
+}
+
+.bottom-details {
+    width: 330px;
+    height: 170px;
+    grid-template-columns: 1fr 1fr;
+    display: none;
+    transform: rotate3d(90, -90, 90, 75deg);
+    gap: 15px;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    left: -10px;
+}
+
+.wrapper.active .bottom-details {
+    display: grid;
+}
+
+.bottom-details .col-feels svg,
+.bottom-details .col-humidity svg,
+.bottom-details .col-min-heat svg,
+.bottom-details .col-max-heat svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.bottom-details .col-humidity,
+.bottom-details .col-feels,
+.bottom-details .col-min-heat,
+.bottom-details .col-max-heat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    color: white;
+    border-radius: 35px;
+    background-color: rgb(30, 213, 253, 0.3);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 10%);
+    transition: 0.5s;
+}
+
+.bottom-details .col-humidity:hover,
+.bottom-details .col-feels:hover,
+.bottom-details .col-min-heat:hover,
+.bottom-details .col-max-heat:hover {
+    box-shadow: 1px 1px 0 1px #f9f9fb, -1px 0 28px 0 rgb(34 33 81 / 1%),
+        54px 54px 28px -10px rgb(43 42 65 / 10%);
+    transform: translate3d(0px, -10px, 0px);
+}
+
+.bottom-details .col-humidity .details,
+.bottom-details .col-feels .details,
+.bottom-details .col-min-heat .details,
+.bottom-details .col-max-heat .details {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.bottom-details .col-humidity .details span,
+.bottom-details .col-feels .details .temp,
+.bottom-details .col-min-heat .number,
+.bottom-details .col-max-heat .number {
+    font-weight: 500;
+}
+
